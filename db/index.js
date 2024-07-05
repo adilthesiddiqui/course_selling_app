@@ -1,9 +1,10 @@
 //  this file will have all our data base elated codes , it will defin the schema and how we are going to add them to the table 
 
 const mongoose = require("mongoose")
+require('dotenv').config()
 // import mongoose from "mongoose
 
-mongoose.connect("mongodb+srv://adilatif24:0kpGuezyAnN1TbbA@cluster0.gyc7nv5.mongodb.net/course_selling_app")
+mongoose.connect(process.env.MONGODB_URL)
 
 
 
@@ -27,9 +28,6 @@ const CourseSchema = new mongoose.Schema({
     description : String,
     imageLink : String,
     Cost : Number,
-
-
-
 })
 
 const Admin = mongoose.model('Admin', AdminSchema)
