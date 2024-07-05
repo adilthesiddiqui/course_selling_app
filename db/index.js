@@ -24,10 +24,10 @@ const UserSchema = new mongoose.Schema({
 })
 
 const CourseSchema = new mongoose.Schema({
-    tite : String,
+    title : String,
     description : String,
     imageLink : String,
-    Cost : Number,
+    cost : Number,
 })
 
 const Admin = mongoose.model('Admin', AdminSchema)
