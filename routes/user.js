@@ -59,4 +59,23 @@ router.get('/course/:courseid',  async function(req, res){
     console.log(course)
 })
 
+router.post('/courses/:courseId', usermiddleware,async (req, res)=>{
+    const courseId = req.params.courseId;
+    const username = req.headers.username;
+    
+    const newUser = await User.updateOne({
+        username : username
+    }, {
+        purchasedCourses : {
+            "$push" : courseId
+        }
+    }
+);
+
+    res.json({
+        msg : "Purchase Completed"
+    })
+})
+
+
 module.exports = router
