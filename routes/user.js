@@ -51,13 +51,17 @@ router.get('/courses', async function (req ,res){
 })
 
 
-// troute to pusrchase a course 
-router.get('/course/:courseid',  async function(req, res){
-    const cours_num = req.params.courseid;
+// route to show  all course 
+router.get('/course/:courseId',  async function(req, res){
+    const cours_num = req.params.courseId;
     console.log(cours_num);
-    const course = await Course.findById(cours_num)
-    console.log(course)
+    const course = await Course.findById(cours_num);
+    console.log(course);
+    res.json({
+        courses : course
+    })
 })
+
 
 router.post('/courses/:courseId', usermiddleware,async (req, res)=>{
     const courseId = req.params.courseId;
@@ -66,8 +70,8 @@ router.post('/courses/:courseId', usermiddleware,async (req, res)=>{
     const newUser = await User.updateOne({
         username : username
     }, {
-        purchasedCourses : {
-            "$push" : courseId
+        "$push" : {
+            purchasedCourses : courseId
         }
     }
 );
