@@ -49,7 +49,13 @@ router.post('/courses', adminMIddleware , async function(req, res){
 })
 
 router.get('/courses', async function (req ,res){
+        // rroute to get all the courses 
+        const response = await Course.find({})
+        console.log(response)
 
+        res.json({
+            Courses : response
+        })
 })
 
 module.exports = router;
